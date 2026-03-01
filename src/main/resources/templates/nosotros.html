@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Nosotros - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #f0c040; }
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 2rem; margin-bottom: 1.5rem; }
+        .card h2 { color: #1a1a1a; border-left: 4px solid #f0c040; padding-left: 0.75rem; margin-bottom: 1rem; }
+        .card p { color: #555; line-height: 1.7; margin-bottom: 1rem; }
+        .valores { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; margin-top: 1rem; }
+        .valor { background: #f9f9f9; border-radius: 6px; padding: 1rem; text-align: center; border-top: 3px solid #f0c040; }
+        .valor h4 { margin-bottom: 0.5rem; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <div class="card">
+        <h2>¿Quiénes somos?</h2>
+        <p>Topografía Hernández es una empresa costarricense con más de 10 años de experiencia en servicios topográficos, catastro y replanteo para proyectos residenciales, comerciales y agrícolas.</p>
+        <p>Contamos con profesionales certificados y equipos de última generación para garantizar mediciones precisas y resultados confiables que cumplan con la normativa del Registro Nacional de Costa Rica.</p>
+    </div>
+    <div class="card">
+        <h2>Nuestra Misión</h2>
+        <p>Brindar servicios topográficos de alta calidad que permitan a nuestros clientes desarrollar sus proyectos con seguridad legal y técnica, garantizando precisión, cumplimiento normativo y atención personalizada.</p>
+    </div>
+    <div class="card">
+        <h2>Nuestros Valores</h2>
+        <div class="valores">
+            <div class="valor"><h4>🎯 Precisión</h4><p>Mediciones exactas con tecnología de punta.</p></div>
+            <div class="valor"><h4>⚖️ Legalidad</h4><p>Cumplimiento de normativas del Registro Nacional.</p></div>
+            <div class="valor"><h4>🤝 Confianza</h4><p>Transparencia en cada etapa del proceso.</p></div>
+            <div class="valor"><h4>⚡ Eficiencia</h4><p>Entrega puntual de todos los trabajos.</p></div>
+        </div>
+    </div>
+</main>
+<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+</body>
+</html>

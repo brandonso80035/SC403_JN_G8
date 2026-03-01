@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Proyectos - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #f0c040; }
+        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+        .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 1.5rem; }
+        .card h3 { color: #1a1a1a; margin-bottom: 0.5rem; }
+        .card p { color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.5rem; }
+        .ubicacion { color: #f0c040; font-size: 0.85rem; font-weight: bold; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <h2 class="section-title">Proyectos Realizados</h2>
+    <div class="grid">
+        <div class="card" th:each="p : ${proyectos}">
+            <h3 th:text="${p.titulo}"></h3>
+            <p th:text="${p.descripcion}"></p>
+            <p class="ubicacion">📍 <span th:text="${p.ubicacion}"></span></p>
+            <p style="color:#aaa; font-size:0.8rem;" th:text="${p.fecha}"></p>
+        </div>
+        <p th:if="${proyectos == null or proyectos.empty}" style="color:#aaa;">Sin proyectos registrados.</p>
+    </div>
+</main>
+<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+</body>
+</html>

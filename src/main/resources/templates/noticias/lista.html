@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Noticias - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #f0c040; }
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .noticia { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); border-left: 4px solid #f0c040; }
+        .noticia h3 { color: #1a1a1a; margin-bottom: 0.5rem; }
+        .noticia p { color: #555; line-height: 1.6; }
+        .noticia .fecha { color: #aaa; font-size: 0.8rem; margin-top: 0.5rem; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <h2 class="section-title">Noticias</h2>
+    <div th:each="n : ${noticias}" class="noticia">
+        <h3 th:text="${n.titulo}"></h3>
+        <p th:text="${n.contenido}"></p>
+        <p class="fecha" th:text="${n.fecha}"></p>
+    </div>
+    <p th:if="${noticias == null or noticias.empty}" style="color:#aaa;">Sin noticias disponibles.</p>
+</main>
+<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+</body>
+</html>

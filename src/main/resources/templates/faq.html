@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>FAQ - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #f0c040; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .faq-item { background: white; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+        .faq-item h4 { color: #1a1a1a; margin-bottom: 0.5rem; }
+        .faq-item p { color: #555; line-height: 1.6; font-size: 0.95rem; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <h2 class="section-title">Preguntas Frecuentes</h2>
+    <div class="faq-item">
+        <h4>¿Qué es un levantamiento topográfico?</h4>
+        <p>Es el proceso de medir y representar gráficamente un terreno, incluyendo sus dimensiones, elevaciones y características físicas.</p>
+    </div>
+    <div class="faq-item">
+        <h4>¿Cuánto tiempo tarda un catastro?</h4>
+        <p>Depende del tamaño del terreno, pero generalmente entre 3 y 7 días hábiles para la medición y entrega del plano.</p>
+    </div>
+    <div class="faq-item">
+        <h4>¿Necesito un plano para tramitar permisos municipales?</h4>
+        <p>Sí, la mayoría de municipalidades requieren planos topográficos firmados por un profesional para aprobar permisos de construcción.</p>
+    </div>
+    <div class="faq-item">
+        <h4>¿Trabajan con bonos de vivienda?</h4>
+        <p>Sí, ofrecemos servicios compatibles con los requisitos de BANHVI y otros programas de bonos de vivienda.</p>
+    </div>
+    <div class="faq-item">
+        <h4>¿Cuál es el costo aproximado de un levantamiento?</h4>
+        <p>Los precios varían según el tamaño y complejidad del terreno. Puede solicitar una cotización sin costo desde nuestra página de contacto.</p>
+    </div>
+    <div class="faq-item">
+        <h4>¿Están inscritos en el Colegio de Ingenieros Topógrafos?</h4>
+        <p>Sí, todos nuestros profesionales están debidamente incorporados y sus trabajos cumplen con la normativa del Registro Nacional.</p>
+    </div>
+</main>
+<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Mensajes - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #f0c040; }
+        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 1.5rem; }
+        .card h2 { color: #1a1a1a; border-left: 4px solid #f0c040; padding-left: 0.75rem; margin-bottom: 1.5rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #1a1a1a; color: white; padding: 0.75rem; text-align: left; }
+        td { padding: 0.65rem 0.75rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        tr:hover td { background: #fffbea; }
+        .badge { padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.8rem; }
+        .badge-pendiente { background: #fff3cd; color: #856404; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <div class="card">
+        <h2>📋 Mensajes Recibidos</h2>
+        <p th:if="${contactos == null or contactos.empty}" style="color:#aaa;">No hay mensajes aún.</p>
+        <table th:if="${contactos != null and !contactos.empty}">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Servicio</th>
+                    <th>Mensaje</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${contactos}">
+                    <td th:text="${c.idContacto}"></td>
+                    <td th:text="${c.nombre}"></td>
+                    <td th:text="${c.telefono ?: '-'}"></td>
+                    <td th:text="${c.email}"></td>
+                    <td th:text="${c.servicio ?: '-'}"></td>
+                    <td th:text="${c.mensaje}"></td>
+                    <td th:text="${c.fechaEnvio}"></td>
+                    <td><span class="badge badge-pendiente" th:text="${c.estado}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+</body>
+</html>

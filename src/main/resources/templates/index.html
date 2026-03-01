@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; display: inline-block; font-size: 0.95rem; }
+        nav a:hover { color: #f0c040; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/images/hero.jpg') center/cover; min-height: 500px; display: flex; align-items: center; justify-content: flex-end; padding: 2rem 4rem; }
+        .hero-text { max-width: 500px; text-align: right; }
+        .hero-text h1 { color: white; font-size: 2rem; line-height: 1.3; margin-bottom: 1rem; }
+        .hero-text a { color: #f0c040; text-decoration: underline; font-size: 1.1rem; }
+        .hero-links { display: flex; justify-content: space-around; background: #1a1a1a; padding: 1rem; }
+        .hero-links a { color: #ccc; text-decoration: none; font-size: 0.95rem; }
+        .hero-links a:hover { color: #f0c040; }
+        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 1.5rem; }
+        .card h3 { color: #1a1a1a; margin-bottom: 0.5rem; }
+        .card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+        .card .precio { color: #f0c040; font-weight: bold; margin-top: 0.75rem; font-size: 1.1rem; }
+        .btn { padding: 0.6rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 1rem; }
+        .btn-dark { background: #1a1a1a; color: white; }
+        .btn-dark:hover { background: #333; }
+        .noticia-card { background: white; border-radius: 8px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); border-left: 4px solid #f0c040; }
+        .noticia-card h4 { margin-bottom: 0.5rem; }
+        .noticia-card p { color: #666; font-size: 0.85rem; }
+        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>Servicios topográficos de levantamiento, catastro y replanteo</h1>
+        <a th:href="@{/servicios}">para proyectos seguros y legales.</a>
+    </div>
+</div>
+
+<div class="hero-links">
+    <a th:href="@{/contacto}">Contáctanos</a>
+    <a th:href="@{/servicios}">Nuestros Servicios</a>
+    <a th:href="@{/nosotros}">Acerca de Nosotros</a>
+</div>
+
+<main>
+    <!-- Servicios -->
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="grid-3">
+        <div class="card" th:each="s : ${servicios}">
+            <h3 th:text="${s.nombre}"></h3>
+            <p th:text="${s.descripcion}"></p>
+            <div class="precio" th:if="${s.precioDesde != null and s.precioDesde > 0}">
+                Desde ₡<span th:text="${#numbers.formatInteger(s.precioDesde, 1, 'COMMA')}"></span>
+            </div>
+        </div>
+        <div class="card" th:if="${servicios == null or servicios.empty}">
+            <p style="color:#aaa;">Cargando servicios...</p>
+        </div>
+    </div>
+
+    <!-- Noticias -->
+    <h2 class="section-title">Últimas Noticias</h2>
+    <div class="grid-3">
+        <div class="noticia-card" th:each="n : ${noticias}">
+            <h4 th:text="${n.titulo}"></h4>
+            <p th:text="${n.fecha}"></p>
+        </div>
+        <div class="noticia-card" th:if="${noticias == null or noticias.empty}">
+            <p style="color:#aaa;">Sin noticias recientes.</p>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin: 2rem 0;">
+        <a th:href="@{/contacto}" class="btn btn-dark">📞 Contáctenos</a>
+        <a th:href="@{/servicios}" class="btn btn-dark" style="margin-left:1rem;">Ver todos los servicios</a>
+    </div>
+</main>
+
+<footer>
+    Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica
+</footer>
+</body>
+</html>
