@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -25,24 +28,24 @@ public class ContenidoRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Servicio> listarServicios() {
-        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
-                .withCatalogName("PKG_CONTENIDO")
-                .withFunctionName("FN_LISTAR_SERVICIOS")
-                .returningResultSet("RESULTADO", (rs, rowNum) -> {
-                    Servicio s = new Servicio();
-                    s.setIdServicio(rs.getLong("ID_SERVICIO"));
-                    s.setNombre(rs.getString("NOMBRE"));
-                    s.setDescripcion(rs.getString("DESCRIPCION"));
-                    s.setPrecioDesde(rs.getDouble("PRECIO_DESDE"));
-                    s.setImagenUrl(rs.getString("IMAGEN_URL"));
-                    return s;
-                });
+    @SuppressWarnings("unchecked")
+public List<Servicio> listarServicios() {
 
-        Map<String, Object> result = call.execute();
-        return (List<Servicio>) result.get("RESULTADO");
-    }
+    SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
+            .withCatalogName("PKG_CONTENIDO")
+            .withFunctionName("FN_LISTAR_SERVICIOS")
+            .returningResultSet("RESULTADO", (rs, rowNum) -> {
+                Servicio s = new Servicio();
+                s.setIdServicio(rs.getLong("ID_SERVICIO"));
+                s.setNombre(rs.getString("NOMBRE"));
+                s.setDescripcion(rs.getString("DESCRIPCION"));
+                s.setPrecioDesde(rs.getDouble("PRECIO_DESDE"));
+                s.setImagenUrl(rs.getString("IMAGEN_URL"));
+                return s;
+            });
 
+    return call.executeFunction(List.class);
+}
     public List<Proyecto> listarProyectos() {
         SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
                 .withCatalogName("PKG_CONTENIDO")

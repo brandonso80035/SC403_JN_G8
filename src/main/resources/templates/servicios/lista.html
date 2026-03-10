@@ -22,6 +22,56 @@
                font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 1rem; }
         .btn-dark { background: #1a1a1a; color: white; }
         footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+        .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    padding: 1.5rem;
+}
+
+.servicio-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.card h3 {
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.precio {
+    color: #f0c040;
+    font-weight: bold;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.btn-dark {
+    background: #1a1a1a;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
     </style>
 </head>
 <body>
@@ -38,17 +88,23 @@
     </div>
 </nav>
 <main>
-    <h2 class="section-title">Nuestros Servicios</h2>
-    <div class="grid">
-        <div class="card" th:each="s : ${servicios}">
-            <h3 th:text="${s.nombre}"></h3>
-            <p th:text="${s.descripcion}"></p>
-            <div class="precio" th:if="${s.precioDesde != null and s.precioDesde > 0}">
-                Desde ₡<span th:text="${#numbers.formatInteger(s.precioDesde, 1, 'COMMA')}"></span>
-            </div>
-            <a th:href="@{/contacto}" class="btn btn-dark">Solicitar cotización</a>
+   <h2 class="section-title">Nuestros servicios</h2>
+<div class="grid-3">
+    <div class="card" th:each="s : ${servicios}">
+        <img th:src="|/imagenes/servicios/${s.imagenUrl}|"
+             th:alt="${s.nombre}"
+             class="servicio-img" />
+
+        <h3 th:text="${s.nombre}"></h3>
+        <p th:text="${s.descripcion}"></p>
+
+        <div class="precio" th:if="${s.precioDesde != null and s.precioDesde > 0}">
+            Desde ₡<span th:text="${#numbers.formatInteger(s.precioDesde, 1, 'COMMA')}"></span>
         </div>
+
+        <a th:href="@{/contacto}" class="btn btn-dark">Solicitar cotización</a>
     </div>
+</div>
 </main>
 <footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
 </body>
