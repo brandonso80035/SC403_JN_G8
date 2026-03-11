@@ -88,7 +88,8 @@
     </div>
 </nav>
 <main>
-   <h2 class="section-title">Nuestros servicios</h2>
+   <h2 class="section-title">Servicios Topográficos</h2>
+
 <div class="grid-3">
     <div class="card" th:each="s : ${servicios}">
         <img th:src="|/imagenes/servicios/${s.imagenUrl}|"
@@ -99,11 +100,46 @@
         <p th:text="${s.descripcion}"></p>
 
         <div class="precio" th:if="${s.precioDesde != null and s.precioDesde > 0}">
-            Desde ₡<span th:text="${#numbers.formatInteger(s.precioDesde, 1, 'COMMA')}"></span>
+            Desde ₡<span th:text="${#numbers.formatInteger(s.precioDesde,1,'COMMA')}"></span>
         </div>
 
-        <a th:href="@{/contacto}" class="btn btn-dark">Solicitar cotización</a>
+        <a th:href="@{/contacto}" class="btn btn-dark">
+            Solicitar cotización
+        </a>
     </div>
+</div>
+
+
+<h2 class="section-title">Servicios Complementarios</h2>
+
+<div class="grid-3">
+
+    <div class="card">
+        <img src="/imagenes/servicios/permisos.jpg" class="servicio-img">
+        <h3>Permisos</h3>
+        <p>Gestión de permisos y trámites para proyectos.</p>
+        <a th:href="@{/servicios/permisos}" class="btn btn-dark">Ver más</a>
+    </div>
+
+    <div class="card">
+        <img src="/imagenes/servicios/arquitectura.jpg" class="servicio-img">
+        <h3>Arquitectura</h3>
+        <p>Diseño y planificación de proyectos arquitectónicos.</p>
+        <a th:href="@{/servicios/arquitectura}" class="btn btn-dark">Ver más</a>
+    </div>
+
+    <div class="card">
+        <img src="/imagenes/servicios/bonos.jpg" class="servicio-img">
+        <h3>Bonos de Vivienda</h3>
+        <p>Asesoría y trámite para bonos de vivienda.</p>
+        <a th:href="@{/servicios/bonos}" class="btn btn-dark">Ver más</a>
+    </div>
+
+</div>
+        </a>
+    </div>
+</div>
+
 </div>
 </main>
 <footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>

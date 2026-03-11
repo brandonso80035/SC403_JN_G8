@@ -15,14 +15,47 @@ public class Noticia {
     private String titulo;
     private String contenido;
     private LocalDate fecha;
+    private String imagenUrl;
 
-    public Noticia() {}
-    public Long getIdNoticia() { return idNoticia; }
-    public void setIdNoticia(Long idNoticia) { this.idNoticia = idNoticia; }
-    public String getTitulo() { return titulo; }
-    public void setTitulo(String titulo) { this.titulo = titulo; }
-    public String getContenido() { return contenido; }
-    public void setContenido(String contenido) { this.contenido = contenido; }
-    public LocalDate getFecha() { return fecha; }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+    public Noticia() { }
+
+    public Long getIdNoticia() {
+        return idNoticia;
+    }
+
+    public void setIdNoticia(Long idNoticia) {
+        this.idNoticia = idNoticia;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 }
