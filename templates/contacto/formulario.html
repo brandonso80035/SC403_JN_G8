@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contacto - Topografía Hernández</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; position: relative; transition: color 0.3s ease; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 8px; left: 50%; background-color: #F6B72B; transition: all 0.3s ease; transform: translateX(-50%); }
+        nav a:hover { color: #F6B72B; }
+        nav a:hover::after { width: 80%; }
+        main { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+        .alert { padding: 0.75rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
+        .alert-success { background: #d4edda; color: #155724; }
+        .alert-error   { background: #f8d7da; color: #721c24; }
+        .card { background: linear-gradient(to bottom right, #ffffff, #fffaf0); border-radius: 12px; box-shadow: 0 10px 30px rgba(246, 183, 43, 0.15); padding: 2.5rem; border: 1px solid rgba(246, 183, 43, 0.3); position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #F6B72B, #f59e0b); }
+        .card h2 { color: #121212; margin-bottom: 1.5rem; text-align: center; font-weight: 700; font-size: 2.2rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; color: #444; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.6rem; border: 1px solid #ddd;
+            border-radius: 4px; font-size: 0.95rem; font-family: inherit;
+        }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #F6B72B;
+        }
+        .btn-submit { background: #121212; color: white; border: none; padding: 0.75rem 2rem;
+                      border-radius: 4px; cursor: pointer; font-size: 1rem; width: 100%; margin-top: 0.5rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-submit:hover { background: #F6B72B; color: #121212; font-weight: bold; transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .info-box { background: #121212; border-radius: 8px; padding: 2rem; margin-top: 2rem; border-left: none; border-bottom: 4px solid #F6B72B; box-shadow: 0 8px 20px rgba(0,0,0,0.15); color: #ffffff; }
+        .info-box h3 { margin-bottom: 1rem; color: #F6B72B; font-size: 1.3rem; }
+        .info-box p { color: #e5e7eb; margin-bottom: 0.6rem; font-size: 1rem; }
+        footer { background: #121212; color: #9CA3AF; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+    <div class="links">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/nosotros}">Nosotros</a>
+        <a th:href="@{/servicios}">Servicios</a>
+        <a th:href="@{/proyectos}">Proyectos</a>
+        <a th:href="@{/noticias}">Noticias</a>
+        <a th:href="@{/blog}">Blog</a>
+        <a th:href="@{/contacto}">Contacto</a>
+    </div>
+</nav>
+<main>
+    <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+    <div th:if="${error}"   class="alert alert-error"   th:text="${error}"></div>
+
+    <div class="card">
+        <h2>📞 Contáctenos</h2>
+        <form th:action="@{/contacto/enviar}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez"/>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 8888-8888"/>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico *</label>
+                <input type="email" id="email" name="email" required placeholder="juan@correo.com"/>
+            </div>
+            <div class="form-group">
+                <label for="servicio">Servicio de interés</label>
+                <select id="servicio" name="servicio">
+                    <option value="">-- Seleccione un servicio --</option>
+                    <option th:each="s : ${servicios}" th:value="${s.nombre}" th:text="${s.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Describa su consulta o proyecto..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">✉️ Enviar Mensaje</button>
+        </form>
+
+        <div class="info-box">
+            <h3>📍 Información de Contacto</h3>
+            <p>📞 Teléfono: +506 7078-8606</p>
+            <p>✉️ Email: topografia.hep@gmail.com</p>
+            <p>📍 Puntarenas, Costa Rica</p>
+            <p>🕐 Lunes a Viernes: 8am - 5pm</p>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
