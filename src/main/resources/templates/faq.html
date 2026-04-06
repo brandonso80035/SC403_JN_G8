@@ -4,19 +4,20 @@
     <meta charset="UTF-8"/>
     <title>FAQ - Topografía Hernández</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
-        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
         nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
         nav .links { display: flex; gap: 0.5rem; }
-        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
-        nav a:hover { color: #f0c040; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #F6B72B; }
         main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .section-title { color: #121212; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F6B72B; padding-left: 0.75rem; }
         .faq-item { background: white; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
-        .faq-item h4 { color: #1a1a1a; margin-bottom: 0.5rem; }
-        .faq-item p { color: #555; line-height: 1.6; font-size: 0.95rem; }
-        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+        .faq-item h4 { color: #121212; margin-bottom: 0.5rem; }
+        .faq-item p { color: #4B5563; line-height: 1.6; font-size: 0.95rem; }
+        footer { background: #121212; color: #9CA3AF; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -59,6 +60,6 @@
         <p>Sí, todos nuestros profesionales están debidamente incorporados y sus trabajos cumplen con la normativa del Registro Nacional.</p>
     </div>
 </main>
-<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

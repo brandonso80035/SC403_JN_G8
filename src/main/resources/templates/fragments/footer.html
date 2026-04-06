@@ -1,0 +1,43 @@
+<footer th:fragment="footer">
+    <style>
+        .site-footer { background: #121212; color: #9CA3AF; padding: 4rem 2rem 1.5rem 2rem; margin-top: 4rem; font-size: 0.95rem; font-family: 'Be Vietnam Pro', sans-serif; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; text-align: left; margin-bottom: 3rem; }
+        .footer-grid h3 { color: white; margin-bottom: 1.5rem; font-size: 1.3rem; border-bottom: 2px solid #F6B72B; padding-bottom: 0.5rem; display: inline-block; }
+        .footer-grid p { margin-bottom: 1rem; line-height: 1.7; }
+        .footer-grid ul { list-style: none; padding: 0; }
+        .footer-grid ul li { margin-bottom: 0.8rem; }
+        .footer-grid a { color: #9CA3AF; text-decoration: none; transition: color 0.3s ease; }
+        .footer-grid a:hover { color: #F6B72B; }
+        .footer-btn { display: inline-block; background: #F6B72B; color: #121212; padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: bold; text-decoration: none; margin-top: 1rem; transition: transform 0.3s ease, background 0.3s ease; }
+        .footer-btn:hover { background: #ffc107; transform: translateY(-3px); color: #121212; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; font-size: 0.85rem; }
+    </style>
+    <div class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Nosotros</h3>
+                <p>En Topografía Hernández, ofrecemos servicios topográficos profesionales en Costa Rica. Garantizamos precisión y legalidad para asegurar el éxito de sus proyectos desde el primer trazo.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/servicios}">Servicios</a></li>
+                    <li><a th:href="@{/proyectos}">Proyectos</a></li>
+                    <li><a th:href="@{/noticias}">Noticias</a></li>
+                    <li><a th:href="@{/blog}">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <p>📍 Puntarenas, Costa Rica</p>
+                <p>📞 +506 7078-8606</p>
+                <p>✉️ topografia.hep@gmail.com</p>
+                <a th:href="@{/contacto}" class="footer-btn">Contactar Ahora</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Topografía Hernández. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>

@@ -5,66 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Noticias - Topografía Hernández</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
 
-        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
         nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
         nav .links { display: flex; gap: 0.5rem; }
-        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; display: inline-block; }
-        nav a:hover { color: #f0c040; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; display: inline-block; position: relative; transition: color 0.3s ease; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 8px; left: 50%; background-color: #F6B72B; transition: all 0.3s ease; transform: translateX(-50%); }
+        nav a:hover { color: #F6B72B; }
+        nav a:hover::after { width: 80%; }
 
-        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        main { max-width: 800px; margin: 3rem auto; padding: 0 1rem; }
 
         .section-title {
-            color: #1a1a1a;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #f0c040;
-            padding-left: 0.75rem;
+            color: #121212;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
         }
 
-        .noticia {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .article {
+            background: rgba(229, 231, 235, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-left: 4px solid #F6B72B;
         }
 
-        .noticia img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            display: block;
+        .article:last-child {
+            margin-bottom: 0;
         }
 
-        .noticia h3 {
-            color: #1a1a1a;
+        .article h3 {
+            color: #121212;
+            font-size: 1.6rem;
             margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
-        .noticia p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-
-        .noticia .fecha {
-            color: #999;
+        .article .meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #9CA3AF;
             font-size: 0.85rem;
-            margin-top: 0.5rem;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article .meta .category {
+            color: #F6B72B;
+            font-weight: bold;
+        }
+
+        .article p {
+            color: #4B5563;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
         }
 
         footer {
-            background: #1a1a1a;
-            color: #aaa;
+            background-color: #121212;
+            background-image: radial-gradient(rgba(246, 183, 43, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #9CA3AF;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            font-size: 0.85rem;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            border-top: 3px solid #F6B72B;
         }
     </style>
 </head>
@@ -84,27 +101,58 @@
 </nav>
 
 <main>
-    <h2 class="section-title">Noticias</h2>
+    <h2 class="section-title">Noticias del Sector</h2>
 
-    <div th:if="${noticias != null and !noticias.empty}">
-        <div th:each="n : ${noticias}" class="noticia">
-
-            <img th:if="${n.imagenUrl != null and !#strings.isEmpty(n.imagenUrl)}"
-                 th:src="|/imagenes/noticias/${n.imagenUrl}|"
-                 th:alt="${n.titulo}" />
-
-            <h3 th:text="${n.titulo}">Título noticia</h3>
-            <p th:text="${n.contenido}">Contenido noticia</p>
-            <p class="fecha" th:text="${n.fecha}">Fecha</p>
+    <div class="article">
+        <h3>Actualización en Normativa de Levantamientos Catastrales en Costa Rica</h3>
+        <div class="meta">
+            <span>12 de marzo de 2026</span>
+            <span class="category">Legislación / Catastro</span>
         </div>
+        <p>El Colegio Federado de Ingenieros y de Arquitectos de Costa Rica (CFIA) anunció recientemente una actualización en los lineamientos técnicos para la elaboración de levantamientos topográficos destinados a trámites catastrales.</p>
+        <p>La modificación busca mejorar la precisión en la delimitación de propiedades y estandarizar los formatos digitales que deben entregarse al Registro Nacional de Costa Rica, entidad responsable de la inscripción de planos y propiedades en el país.</p>
+        <p>Entre los principales cambios destacan: Implementación obligatoria de coordenadas georreferenciadas en el sistema CRTM05; requerimiento de archivos digitales compatibles con plataformas SIG; y mayor precisión en la medición de linderos urbanos y rurales.</p>
+        <p>Según el comunicado oficial, estas medidas buscan reducir inconsistencias en planos registrados y evitar conflictos legales entre propietarios. Los profesionales del área tendrán un período de adaptación de seis meses para implementar los nuevos requisitos en sus levantamientos.</p>
     </div>
 
-    <p th:if="${noticias == null or noticias.empty}" style="color:#aaa;">Sin noticias disponibles.</p>
+    <div class="article">
+        <h3>Nuevas Tecnologías de Drones Transforman los Estudios Topográficos</h3>
+        <div class="meta">
+            <span>5 de marzo de 2026</span>
+            <span class="category">Tecnología</span>
+        </div>
+        <p>El uso de drones especializados para levantamientos topográficos continúa creciendo en Costa Rica y en el resto de América Latina. Empresas del sector han comenzado a incorporar drones equipados con sensores LiDAR y cámaras de alta resolución para acelerar la captura de datos geoespaciales.</p>
+        <p>Estos equipos permiten realizar levantamientos en áreas extensas en cuestión de horas, algo que tradicionalmente podía tomar varios días utilizando métodos convencionales.</p>
+        <p>De acuerdo con expertos del sector, las principales ventajas incluyen: reducción significativa del tiempo de campo, obtención de modelos digitales de terreno con alta precisión y mayor seguridad en zonas de difícil acceso.</p>
+        <p>La adopción de esta tecnología también ha impulsado nuevas regulaciones por parte de la Dirección General de Aviación Civil de Costa Rica, que exige permisos específicos para vuelos con drones utilizados en actividades profesionales.</p>
+    </div>
+
+    <div class="article">
+        <h3>Reforma Propuesta para Modernizar el Catastro Nacional</h3>
+        <div class="meta">
+            <span>21 de febrero de 2026</span>
+            <span class="category">Política Pública</span>
+        </div>
+        <p>El gobierno costarricense presentó recientemente una propuesta de reforma para modernizar el sistema catastral del país, con el objetivo de digitalizar completamente los procesos de registro de propiedades.</p>
+        <p>La iniciativa contempla la integración de plataformas digitales que permitirán a topógrafos, ingenieros y desarrolladores inmobiliarios realizar trámites de inscripción de planos de manera más rápida y eficiente.</p>
+        <p>Entre los objetivos principales de la reforma se encuentran: reducir los tiempos de registro de planos, mejorar la interoperabilidad entre instituciones públicas y fortalecer la seguridad jurídica de la propiedad.</p>
+        <p>El proyecto también plantea la implementación de bases de datos geoespaciales centralizadas, lo cual facilitaría el acceso a información territorial para proyectos de infraestructura, planificación urbana y desarrollo agrícola. Especialistas consideran que esta reforma podría representar uno de los avances más importantes en la gestión territorial del país en las últimas décadas.</p>
+    </div>
+
+    <div class="article">
+        <h3>Crece la Demanda de Servicios Topográficos en Proyectos de Infraestructura</h3>
+        <div class="meta">
+            <span>10 de febrero de 2026</span>
+            <span class="category">Infraestructura</span>
+        </div>
+        <p>El aumento en proyectos de infraestructura pública y privada en Costa Rica ha generado una creciente demanda de servicios topográficos especializados.</p>
+        <p>Entre los sectores que más requieren estos estudios se encuentran: construcción de carreteras y ampliaciones viales, desarrollo de proyectos inmobiliarios e instalación de infraestructura energética.</p>
+        <p>Los levantamientos topográficos permiten obtener información precisa sobre el terreno, lo que resulta fundamental para el diseño de obras civiles y la planificación de proyectos de gran escala.</p>
+        <p>Además, el uso combinado de tecnologías como estaciones totales, receptores GPS de alta precisión y drones ha permitido mejorar significativamente la calidad de los datos obtenidos. Expertos del sector destacan que la topografía seguirá siendo una disciplina clave en el desarrollo urbano y territorial del país durante los próximos años.</p>
+    </div>
 </main>
 
-<footer>
-    Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica
-</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

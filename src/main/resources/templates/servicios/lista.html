@@ -4,24 +4,30 @@
     <meta charset="UTF-8"/>
     <title>Servicios - Topografía Hernández</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
-        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
         nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
         nav .links { display: flex; gap: 0.5rem; }
-        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
-        nav a:hover { color: #f0c040; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #F6B72B; }
         main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
-        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
+        .section-title { color: #121212; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F6B72B; padding-left: 0.75rem; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
         .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 1.5rem; }
-        .card h3 { color: #1a1a1a; margin-bottom: 0.5rem; }
-        .card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
-        .card .precio { color: #f0c040; font-weight: bold; margin-top: 0.75rem; }
+        .card h3 { color: #121212; margin-bottom: 0.5rem; }
+        .card p { color: #4B5563; font-size: 0.9rem; line-height: 1.5; }
+        .card .precio { color: #F6B72B; font-weight: bold; margin-top: 0.75rem; }
         .btn { padding: 0.5rem 1.2rem; border: none; border-radius: 4px; cursor: pointer;
                font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 1rem; }
-        .btn-dark { background: #1a1a1a; color: white; }
-        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+        .btn-dark { background: #121212; color: white; }
+        footer { background: #121212; color: #9CA3AF; padding: 3rem 2rem 1.5rem 2rem; margin-top: 4rem; font-size: 0.9rem; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left; margin-bottom: 2rem; }
+        .footer-content h3 { color: white; margin-bottom: 1rem; font-size: 1.2rem; }
+        .footer-content p, .footer-content a { color: #9CA3AF; text-decoration: none; line-height: 1.6; }
+        .footer-content a:hover { color: #F6B72B; }
+        .footer-bottom { border-top: 1px solid #374151; padding-top: 1.5rem; text-align: center; font-size: 0.85rem; }
         .grid-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -32,8 +38,13 @@
 .card {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
     padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,.15);
 }
 
 .servicio-img {
@@ -46,31 +57,41 @@
 }
 
 .card h3 {
-    color: #1a1a1a;
+    color: #121212;
     margin-bottom: 0.5rem;
 }
 
 .card p {
-    color: #666;
+    color: #4B5563;
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 .precio {
-    color: #f0c040;
+    color: #F6B72B;
     font-weight: bold;
     margin-top: 0.75rem;
     font-size: 1.1rem;
 }
 
 .btn-dark {
-    background: #1a1a1a;
+    background: #121212;
     color: white;
     padding: 0.6rem 1.2rem;
     border-radius: 4px;
     text-decoration: none;
     display: inline-block;
     margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: none;
+}
+.btn-dark:hover {
+    background: #F6B72B;
+    color: #121212;
+    font-weight: bold;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
     </style>
 </head>
@@ -142,6 +163,6 @@
 
 </div>
 </main>
-<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

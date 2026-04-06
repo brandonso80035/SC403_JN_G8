@@ -4,21 +4,23 @@
     <meta charset="UTF-8"/>
     <title>Blog - Topografía Hernández</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
-        nav { background: #1a1a1a; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
         nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
         nav .links { display: flex; gap: 0.5rem; }
-        nav a { color: #ccc; text-decoration: none; padding: 1rem 0.75rem; }
-        nav a:hover { color: #f0c040; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; }
+        nav a:hover { color: #F6B72B; }
         main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        .section-title { color: #1a1a1a; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #f0c040; padding-left: 0.75rem; }
-        .post { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
-        .post h3 { color: #1a1a1a; margin-bottom: 0.5rem; }
-        .post p { color: #555; line-height: 1.6; }
-        .post .meta { color: #aaa; font-size: 0.8rem; margin-top: 0.5rem; }
-        .categoria { background: #f0c040; color: #1a1a1a; padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: bold; }
-        footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
+        .section-title { color: #121212; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F6B72B; padding-left: 0.75rem; }
+        .post { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .post:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,.15); }
+        .post h3 { color: #121212; margin-bottom: 0.5rem; }
+        .post p { color: #4B5563; line-height: 1.6; }
+        .post .meta { color: #9CA3AF; font-size: 0.8rem; margin-top: 0.5rem; }
+        .categoria { background: #F6B72B; color: #121212; padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: bold; }
+        footer { background: #121212; color: #9CA3AF; text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -42,8 +44,37 @@
         <p th:text="${b.contenido}"></p>
         <p class="meta" th:text="${b.fecha}"></p>
     </div>
-    <p th:if="${entradas == null or entradas.empty}" style="color:#aaa;">Sin entradas de blog.</p>
+    <p th:if="${entradas == null or entradas.empty}" style="color:#9CA3AF;">Sin entradas de blog.</p>
+    <div class="post">
+        <span class="categoria">Educativo</span>
+        <h3 style="margin-top:0.5rem;">¿Qué es un levantamiento topográfico?</h3>
+        <p>Un levantamiento topográfico es el proceso técnico mediante el cual se mide y representa gráficamente un terreno. Este procedimiento permite obtener información precisa sobre la forma, dimensiones, alturas y características físicas de una propiedad o área específica.</p>
+        <p style="margin-top:0.5rem;">Para realizarlo se utilizan instrumentos especializados como estaciones totales, GPS geodésico, niveles y drones fotogramétricos. Con estos equipos, los topógrafos pueden capturar coordenadas exactas que luego se transforman en planos detallados del terreno.</p>
+        <p style="margin-top:0.5rem;">Este tipo de estudio es fundamental antes de iniciar cualquier proyecto de construcción, urbanización o subdivisión de terrenos, ya que permite conocer con precisión los límites de la propiedad, las pendientes del terreno y cualquier elemento natural o artificial presente.</p>
+        <p style="margin-top:0.5rem;">Además, el levantamiento topográfico es un requisito común para trámites legales, catastros municipales y desarrollo de infraestructura.</p>
+        <p class="meta">2026-03-15</p>
+    </div>
+
+    <div class="post">
+        <span class="categoria">Legal</span>
+        <h3 style="margin-top:0.5rem;">Diferencia entre catastro y escritura</h3>
+        <p>Muchos propietarios confunden el plano catastrado con la escritura de una propiedad, sin embargo, ambos documentos cumplen funciones diferentes dentro del ámbito legal y registral.</p>
+        <p style="margin-top:0.5rem;">La escritura es el documento legal que certifica la propiedad de un terreno o inmueble y se encuentra inscrita en el Registro Nacional. En ella se establece quién es el propietario y bajo qué condiciones se adquirió el bien.</p>
+        <p style="margin-top:0.5rem;">Por otro lado, el plano catastrado es un documento técnico elaborado por un topógrafo autorizado. Este plano muestra la forma, ubicación, dimensiones y colindancias del terreno dentro del sistema catastral del país.</p>
+        <p style="margin-top:0.5rem;">Ambos documentos son complementarios: la escritura respalda la propiedad legal mientras que el plano catastrado define físicamente el terreno. Para realizar muchos trámites como ventas, segregaciones o hipotecas, es necesario contar con ambos correctamente registrados.</p>
+        <p class="meta">2026-03-15</p>
+    </div>
+
+    <div class="post">
+        <span class="categoria">Consejos</span>
+        <h3 style="margin-top:0.5rem;">¿Cuándo necesito un replanteo topográfico?</h3>
+        <p>Un replanteo topográfico se realiza cuando es necesario trasladar al terreno las medidas y posiciones definidas en un plano o proyecto. En otras palabras, consiste en marcar físicamente en el terreno los puntos donde se construirán estructuras o límites.</p>
+        <p style="margin-top:0.5rem;">Este procedimiento es especialmente importante antes de iniciar construcciones como casas, edificios, muros, carreteras o cualquier obra civil. Gracias al replanteo, los ingenieros y constructores pueden asegurarse de que la obra se ubique exactamente donde fue diseñada.</p>
+        <p style="margin-top:0.5rem;">También es recomendable realizar un replanteo cuando existen dudas sobre los límites de una propiedad o cuando se desea evitar conflictos con terrenos vecinos.</p>
+        <p style="margin-top:0.5rem;">Realizar este proceso con un profesional garantiza precisión en las medidas y reduce el riesgo de problemas legales o errores en la construcción.</p>
+        <p class="meta">2026-03-15</p>
+    </div>
 </main>
-<footer>Topografía Hernández © 2026 · Servicios topográficos profesionales en Costa Rica</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
