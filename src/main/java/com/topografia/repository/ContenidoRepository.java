@@ -76,6 +76,7 @@ public List<Servicio> listarServicios() {
                     n.setIdNoticia(rs.getLong("ID_NOTICIA"));
                     n.setTitulo(rs.getString("TITULO"));
                     n.setContenido(rs.getString("CONTENIDO"));
+                    n.setImagenUrl(rs.getString("IMAGEN_URL"));  // Mover aquí
                     if (rs.getDate("FECHA") != null) {
                         n.setFecha(rs.getDate("FECHA").toLocalDate());
                     n.setImagenUrl(rs.getString("IMAGEN_URL"));

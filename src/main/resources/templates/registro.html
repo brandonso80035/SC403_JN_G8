@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registro - Topografía Hernández</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background: linear-gradient(135deg, #121212 0%, #2d2d2d 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .register-container { background: white; border-radius: 12px; padding: 2rem; width: 100%; max-width: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .register-container h2 { color: #121212; margin-bottom: 1.5rem; text-align: center; border-left: 4px solid #F6B72B; padding-left: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #374151; font-weight: 500; }
+        input, select { width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #F6B72B; }
+        button { width: 100%; padding: 0.75rem; background: #F6B72B; color: #121212; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        button:hover { transform: translateY(-2px); }
+        .alert { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; }
+        .alert-danger { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+        .alert-success { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+        .links { text-align: center; margin-top: 1rem; }
+        .links a { color: #F6B72B; text-decoration: none; }
+        .row { display: flex; gap: 1rem; }
+        .row .form-group { flex: 1; }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <h2>Crear Cuenta</h2>
+    
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:if="${exito}" class="alert alert-success" th:text="${exito}"></div>
+    
+    <form th:action="@{/registro/crear}" th:object="${usuario}" method="post">
+        <div class="row">
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" th:field="*{nombre}" required/>
+            </div>
+            <div class="form-group">
+                <label>Apellidos:</label>
+                <input type="text" th:field="*{apellidos}" required/>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Usuario:</label>
+            <input type="text" th:field="*{username}" required/>
+        </div>
+        
+        <div class="form-group">
+            <label>Correo electrónico:</label>
+            <input type="email" th:field="*{correo}" required/>
+        </div>
+        
+        <div class="form-group">
+            <label>Teléfono:</label>
+            <input type="tel" th:field="*{telefono}"/>
+        </div>
+        
+        <div class="form-group">
+            <label>Contraseña:</label>
+            <input type="password" th:field="*{password}" required/>
+        </div>
+        
+        <div class="form-group">
+            <label>Confirmar Contraseña:</label>
+            <input type="password" name="confirmarPassword" required/>
+        </div>
+        
+        <button type="submit">Registrarse</button>
+    </form>
+    
+    <div class="links">
+        <p>¿Ya tienes cuenta? <a th:href="@{/login}">Iniciar Sesión</a></p>
+    </div>
+</div>
+</body>
+</html>

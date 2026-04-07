@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+<div th:fragment="navbar">
+    <nav>
+        <span class="logo"> TOPOGRAFÍA HERNÁNDEZ</span>
+        <div class="links">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/nosotros}">Nosotros</a>
+            <a th:href="@{/servicios}">Servicios</a>
+            <a th:href="@{/proyectos}">Proyectos</a>
+            <a th:href="@{/noticias}">Noticias</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/contacto}">Contacto</a>
+            
+            <a th:href="@{/admin/usuarios}" sec:authorize="hasRole('ADMIN')" style="background:#f0c040; color:#1a1a1a; border-radius:4px;">👥 Admin</a>
+            
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/login}"> Iniciar Sesión</a>
+            </div>
+            
+            <div sec:authorize="isAuthenticated()" class="user-info">
+                <div class="dropdown">
+                    <span class="user-name">
+                        👤 <span sec:authentication="name"></span>
+                        <span sec:authorize="hasRole('ADMIN')" class="admin-badge">Admin</span>
+                    </span>
+                    <div class="dropdown-content">
+                        <a th:href="@{/perfil}">Mi Perfil</a>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="logout-btn">🚪 Cerrar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

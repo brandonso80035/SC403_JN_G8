@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recuperar Contraseña - Topografía Hernández</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background: linear-gradient(135deg, #121212 0%, #2d2d2d 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .recover-container { background: white; border-radius: 12px; padding: 2rem; width: 100%; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .recover-container h2 { color: #121212; margin-bottom: 1.5rem; text-align: center; border-left: 4px solid #F6B72B; padding-left: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #374151; font-weight: 500; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #F6B72B; }
+        button { width: 100%; padding: 0.75rem; background: #F6B72B; color: #121212; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        button:hover { transform: translateY(-2px); }
+        .alert { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; }
+        .alert-danger { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+        .alert-success { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+        .links { text-align: center; margin-top: 1rem; }
+        .links a { color: #F6B72B; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="recover-container">
+    <h2>Recuperar Contraseña</h2>
+    
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:if="${exito}" class="alert alert-success" th:text="${exito}"></div>
+    
+    <form th:action="@{/registro/recordar}" method="post">
+        <div class="form-group">
+            <label>Usuario:</label>
+            <input type="text" name="username" required/>
+        </div>
+        
+        <div class="form-group">
+            <label>Correo electrónico:</label>
+            <input type="email" name="email" required/>
+        </div>
+        
+        <button type="submit">Enviar enlace de recuperación</button>
+    </form>
+    
+    <div class="links">
+        <p><a th:href="@{/login}">Volver al inicio de sesión</a></p>
+    </div>
+</div>
+</body>
+</html>
