@@ -39,13 +39,11 @@ public class RegistroController {
     public String registrarUsuario(Usuario usuario, 
                                    @RequestParam("confirmarPassword") String confirmarPassword,
                                    Model model) {
-        // Validar que las contraseñas coincidan
         if (!usuario.getPassword().equals(confirmarPassword)) {
             model.addAttribute("error", "Las contraseñas no coinciden");
             return "registro";
         }
         
-        // Validar que el usuario no exista
         if (registroService.existeUsuario(usuario.getUsername(), usuario.getCorreo())) {
             model.addAttribute("error", "El nombre de usuario o correo ya está registrado");
             return "registro";

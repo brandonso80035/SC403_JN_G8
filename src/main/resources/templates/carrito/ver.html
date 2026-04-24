@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Mi Carrito - Topografía Hernández</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
+        main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+        .section-title { color: #121212; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F6B72B; padding-left: 0.75rem; }
+        table { width: 100%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.1); border-collapse: collapse; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #121212; color: white; }
+        .cantidad-input { width: 60px; padding: 0.3rem; text-align: center; }
+        .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; border: none; cursor: pointer; font-weight: bold; display: inline-block; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-warning { background: #F6B72B; color: #121212; }
+        .btn-dark { background: #121212; color: white; }
+        .total { text-align: right; font-size: 1.2rem; margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px; }
+        .carrito-vacio { text-align: center; padding: 3rem; background: white; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .acciones { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; flex-wrap: wrap; }
+        img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+        @media (max-width: 768px) { table, thead, tbody, th, td, tr { display: block; } th { display: none; } td { display: block; padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main>
+    <h2 class="section-title">🛒 Mi Carrito de Servicios</h2>
+    
+    <div th:if="${carrito == null or carrito.items.empty}" class="carrito-vacio">
+        <p>🛍️ Tu carrito está vacío</p>
+        <a th:href="@{/servicios}" class="btn btn-dark">Ver servicios</a>
+    </div>
+    
+    <div th:if="${carrito != null and not carrito.items.empty}">
+        <table>
+            <thead>
+                <tr><th>Servicio</th><th>Descripción</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th></th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${carrito.items}">
+                    <td><img th:src="|/imagenes/servicios/${item.imagenUrl}|" th:alt="${item.nombre}" style="width:50px;"/><br/><span th:text="${item.nombre}"></span></td>
+                    <td th:text="${item.descripcion}"></td>
+                    <td>₡<span th:text="${#numbers.formatInteger(item.precio,1,'COMMA')}"></span></td>
+                    <td>
+                        <form th:action="@{/carrito/actualizar}" method="post" style="display: flex; gap: 0.5rem;">
+                            <input type="hidden" name="idServicio" th:value="${item.idServicio}"/>
+                            <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" class="cantidad-input"/>
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                        </form>
+                    </td>
+                    <td>₡<span th:text="${#numbers.formatInteger(item.subtotal,1,'COMMA')}"></span></td>
+                    <td><a th:href="@{/carrito/eliminar/{id}(id=${item.idServicio})}" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total">
+            <strong>Total: ₡<span th:text="${#numbers.formatInteger(carrito.total,1,'COMMA')}"></span></strong>
+        </div>
+        
+        <div class="acciones">
+            <a th:href="@{/servicios}" class="btn btn-dark">➕ Seguir comprando</a>
+            <a th:href="@{/carrito/vaciar}" class="btn btn-danger">🗑️ Vaciar carrito</a>
+            <a th:href="@{/contacto}" class="btn btn-warning">📞 Solicitar cotización</a>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

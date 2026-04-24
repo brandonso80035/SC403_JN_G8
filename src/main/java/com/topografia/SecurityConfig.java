@@ -30,16 +30,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests
-                // Rutas públicas (acceso libre)
                 .requestMatchers("/", "/index", "/login", "/registro/**", "/acceso_denegado",
                                 "/css/**", "/js/**", "/images/**", "/webjars/**",
                                 "/servicios", "/proyectos", "/noticias", "/blog",
                                 "/contacto", "/sobre-nosotros").permitAll()
-                // Rutas para usuarios autenticados (cualquier rol)
                 .requestMatchers("/perfil", "/cambiar-password").authenticated()
-                // Rutas solo para ADMIN
                 .requestMatchers("/admin/**", "/usuario/**").hasRole("ADMIN")
-                // Rutas para EDITOR y ADMIN
                 .requestMatchers("/contenido/editar/**", "/noticias/editar/**", "/blog/editar/**")
                     .hasAnyRole("ADMIN", "EDITOR")
                 .anyRequest().authenticated()

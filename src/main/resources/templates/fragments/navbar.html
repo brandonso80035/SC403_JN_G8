@@ -1,0 +1,49 @@
+<div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <style>
+        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
+        nav .links { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; display: inline-block; font-size: 0.95rem; }
+        nav a:hover { color: #F6B72B; }
+        .user-info { display: flex; align-items: center; gap: 0.5rem; }
+        .user-name { color: #F6B72B; font-size: 0.9rem; margin-left: 0.5rem; }
+        .logout-btn { background: none; border: none; color: #9CA3AF; cursor: pointer; font-family: inherit; font-size: 0.95rem; padding: 1rem 0.75rem; }
+        .logout-btn:hover { color: #F6B72B; }
+        .admin-badge { background: #F6B72B; color: #121212; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-left: 0.5rem; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background-color: #121212; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; right: 0; }
+        .dropdown-content a { color: #9CA3AF; padding: 12px 16px; text-decoration: none; display: block; text-align: left; }
+        .dropdown-content a:hover { color: #F6B72B; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .cart-icon { position: relative; display: inline-block; }
+        .cart-badge { background: #F6B72B; color: #121212; border-radius: 50%; padding: 0.2rem 0.5rem; font-size: 0.7rem; font-weight: bold; position: absolute; top: 0; right: -5px; }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; }
+            .links { justify-content: center; margin-bottom: 0.5rem; }
+        }
+    </style>
+    <nav>
+        <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
+        <div class="links">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/nosotros}">Nosotros</a>
+            <a th:href="@{/servicios}">Servicios</a>
+            <a th:href="@{/proyectos}">Proyectos</a>
+            <a th:href="@{/noticias}">Noticias</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/contacto}">Contacto</a>
+            <a th:href="@{/carrito}" class="cart-icon">🛒 Carrito<span th:if="${cantidadCarrito != null and cantidadCarrito > 0}" class="cart-badge" th:text="${cantidadCarrito}"></span></a>
+            <a th:href="@{/admin/usuarios}" sec:authorize="hasRole('ADMIN')" style="background:#F6B72B; color:#121212; border-radius:4px;">👥 Admin</a>
+            <div sec:authorize="isAnonymous()"><a th:href="@{/login}">🔐 Iniciar Sesión</a></div>
+            <div sec:authorize="isAuthenticated()" class="user-info">
+                <div class="dropdown">
+                    <span class="user-name">👤 <span sec:authentication="name"></span><span sec:authorize="hasRole('ADMIN')" class="admin-badge">Admin</span></span>
+                    <div class="dropdown-content">
+                        <a th:href="@{/perfil}">Mi Perfil</a>
+                        <form th:action="@{/logout}" method="post" style="margin:0"><button type="submit" class="logout-btn" style="width:100%; text-align:left">🚪 Cerrar Sesión</button></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

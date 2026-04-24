@@ -2,57 +2,102 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Proyectos - Topografía Hernández</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; color: #374151; }
-        nav { background: #121212; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
-        nav .logo { color: white; font-size: 1.1rem; font-weight: bold; padding: 1rem 0; }
-        nav .links { display: flex; gap: 0.5rem; }
-        nav a { color: #9CA3AF; text-decoration: none; padding: 1rem 0.75rem; }
-        nav a:hover { color: #F6B72B; }
-        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
-        .section-title { color: #121212; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F6B72B; padding-left: 0.75rem; }
-        .grid { display: flex; flex-direction: column; gap: 2rem; }
-        .card { background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,.08); padding: 2.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 6px solid #F6B72B; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,.15); }
-        .card h3 { color: #121212; margin-bottom: 1rem; font-size: 1.8rem; }
-        .card p { color: #4B5563; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem; }
-        .ubicacion { color: #F6B72B; font-size: 1rem; font-weight: bold; margin-bottom: 0.5rem; }
-        footer { background: #121212; color: #9CA3AF; padding: 3rem 2rem 1.5rem 2rem; margin-top: 4rem; font-size: 0.9rem; }
-        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left; margin-bottom: 2rem; }
-        .footer-content h3 { color: white; margin-bottom: 1rem; font-size: 1.2rem; }
-        .footer-content p, .footer-content a { color: #9CA3AF; text-decoration: none; line-height: 1.6; }
-        .footer-content a:hover { color: #F6B72B; }
-        .footer-bottom { border-top: 1px solid #374151; padding-top: 1.5rem; text-align: center; font-size: 0.85rem; }
+        
+        body { 
+            font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; 
+            background: #FAFAFA; 
+            color: #374151; 
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section-title {
+            color: #121212;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #F6B72B;
+            padding-left: 0.75rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border-left: 6px solid #F6B72B;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #121212;
+            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+        }
+        
+        .card p {
+            color: #4B5563;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        
+        .ubicacion {
+            color: #F6B72B;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        .fecha {
+            color: #9CA3AF;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-<nav>
-    <span class="logo">📐 TOPOGRAFÍA HERNÁNDEZ</span>
-    <div class="links">
-        <a th:href="@{/}">Inicio</a>
-        <a th:href="@{/nosotros}">Nosotros</a>
-        <a th:href="@{/servicios}">Servicios</a>
-        <a th:href="@{/proyectos}">Proyectos</a>
-        <a th:href="@{/noticias}">Noticias</a>
-        <a th:href="@{/blog}">Blog</a>
-        <a th:href="@{/contacto}">Contacto</a>
-    </div>
-</nav>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
 <main>
-    <h2 class="section-title">Proyectos Realizados</h2>
+    <h2 class="section-title">🏗️ Proyectos Realizados</h2>
     <div class="grid">
         <div class="card" th:each="p : ${proyectos}">
-            <h3 th:text="${p.titulo}"></h3>
-            <p th:text="${p.descripcion}"></p>
-            <p class="ubicacion">📍 <span th:text="${p.ubicacion}"></span></p>
-            <p style="color:#9CA3AF; font-size:0.8rem;" th:text="${p.fecha}"></p>
+            <h3 th:text="${p.titulo}">Título del proyecto</h3>
+            <p th:text="${p.descripcion}">Descripción del proyecto</p>
+            <p class="ubicacion">📍 <span th:text="${p.ubicacion}">Ubicación</span></p>
+            <p class="fecha" th:text="${p.fecha}">Fecha</p>
         </div>
-        <p th:if="${proyectos == null or proyectos.empty}" style="color:#9CA3AF;">Sin proyectos registrados.</p>
     </div>
+    <p th:if="${proyectos == null or proyectos.empty}" style="text-align:center; padding:2rem; color:#9CA3AF;">No hay proyectos registrados actualmente.</p>
 </main>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>

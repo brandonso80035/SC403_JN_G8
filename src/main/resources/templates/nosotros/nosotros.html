@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nosotros - Topografía Hernández</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; 
+            background: #FAFAFA; 
+            color: #374151; 
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section-title {
+            color: #121212;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #F6B72B;
+            padding-left: 0.75rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #F6B72B;
+        }
+        
+        .card h2 {
+            color: #121212;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #4B5563;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .value-card {
+            background: #FAFAFA;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .value-card h3 {
+            color: #F6B72B;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .value-card p {
+            color: #6B7280;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.5rem; }
+            .values { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main>
+    <h2 class="section-title">Sobre Nosotros</h2>
+    
+    <div class="card">
+        <h2>¿Quiénes somos?</h2>
+        <p>Topografía Hernández es una empresa costarricense con más de 15 años de experiencia en el sector topográfico. Nos especializamos en brindar soluciones precisas y confiables para proyectos de construcción, catastro y desarrollo inmobiliario.</p>
+        <p>Nuestro equipo está conformado por profesionales altamente capacitados y equipados con tecnología de última generación, garantizando mediciones exactas y entregas oportunas en cada proyecto.</p>
+        <p>Nos enorgullece ofrecer un servicio personalizado, adaptado a las necesidades específicas de cada cliente, siempre cumpliendo con los más altos estándares de calidad y ética profesional.</p>
+    </div>
+    
+    <div class="card">
+        <h2>Nuestra Misión</h2>
+        <p>Brindar servicios topográficos de alta calidad que permitan a nuestros clientes desarrollar sus proyectos con seguridad legal y técnica, garantizando precisión, cumplimiento normativo y atención personalizada.</p>
+    </div>
+    
+    <div class="card">
+        <h2>Nuestros Valores</h2>
+        <div class="values">
+            <div class="value-card"><h3>🎯 Precisión</h3><p>Mediciones exactas con tecnología de punta</p></div>
+            <div class="value-card"><h3>⚖️ Legalidad</h3><p>Cumplimiento de normativas del Registro Nacional</p></div>
+            <div class="value-card"><h3>🤝 Confianza</h3><p>Más de 500 clientes satisfechos</p></div>
+            <div class="value-card"><h3>⚡ Eficiencia</h3><p>Entregas puntuales sin comprometer la calidad</p></div>
+            <div class="value-card"><h3>🌱 Sostenibilidad</h3><p>Proyectos con conciencia ambiental</p></div>
+            <div class="value-card"><h3>🚀 Innovación</h3><p>Uso de drones y tecnología avanzada</p></div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
